@@ -7,17 +7,11 @@ var expect = function(val) {
         toBe(val2){
             if(val2 === val){
                 return true;
-            }
-            else{
-                throw new Error ("Not Equal");
-            }
+            }          
         },
         notToBe(val2){
             if(val2 !== val){   
                 return true;
-            }
-            else{
-                throw new Error ("Equal");
             }
         }
     };
@@ -25,7 +19,31 @@ var expect = function(val) {
 };
 
 console.log(expect(5).toBe(5));
+console.log(expect(5).notToBe(5));
 /**
- * expect(5).toBe(5); // true
- * expect(5).notToBe(5); // throws "Equal"
+ * const counter = createCounter(5)
+ * counter.increment(); // 6
+ * counter.reset(); // 5
+ * counter.decrement(); // 4
  */
+var createCounter = function(init) {
+    let val = init;
+    const obj = {
+        increment(){
+            val++;
+            return val;
+        },
+        reset(){
+            val = init;
+            return val;
+        },
+        decrement(){
+            val--;
+            return val;
+        }
+    };
+    return obj;
+}
+console.log(createCounter(5).increment());
+console.log(createCounter(5).reset());
+console.log(createCounter(5).decrement());
