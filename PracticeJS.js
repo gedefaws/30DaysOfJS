@@ -3,22 +3,25 @@
  * @return {Object}
  */
 var expect = function(val) {
-    toBe: function(val2){
-        if(val2 === val){
-            return true;
+    const obj = {
+        toBe(val2){
+            if(val2 === val){
+                return true;
+            }
+            else{
+                throw new Error ("Not Equal");
+            }
+        },
+        notToBe(val2){
+            if(val2 !== val){   
+                return true;
+            }
+            else{
+                throw new Error ("Equal");
+            }
         }
-        else{
-            return "Not Equal";
-        }
-    },
-    notToBe: function(val2){
-        if(val2 !== val){   
-            return true;
-        }
-        else{
-            return "Equal";
-        }
-    }
+    };
+    return obj;
 };
 
 console.log(expect(5).toBe(5));
